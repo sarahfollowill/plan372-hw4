@@ -15,9 +15,12 @@ airport_pairs = read_csv("airport_pairs.csv")
 # flights departing RDU and those arriving RDU. What is the most popular non-stop destination from RDU?
 # Filter your table to only include airport pairs with more 10,000 passengers. 
 airport_pairs_RDU = filter(airport_pairs, origin == "RDU" | dest == "RDU")
+# Just select origin, destination, and passenger columns
 airport_pairs_RDU = airport_pairs_RDU[,1:3]
+# Only show airport pairs with > 10,000 passengers
 airport_pairs_RDU = filter(airport_pairs_RDU, passengers > 10000)
 
+# Arrange by passengers from highest to lowest and view table
 airport_pairs_RDU = arrange(airport_pairs_RDU, -passengers)
 view(airport_pairs_RDU)
 
@@ -49,8 +52,8 @@ origin_pop <- merge(airport_pairs,
                        by = "origin_cbsa")
 
 # Make a copy object of the census data to join destination data
-# Rename the cbsa column in in the census_dest data to match what its called in airport_pairs
 census_dest = census
+# Rename the cbsa column in in the census_dest data to match what its called in airport_pairs
 colnames(census_dest)[1] = "dest_cbsa"
 
 # Merge airport_pairs and census data by cbsa
@@ -82,6 +85,7 @@ plot(total_popE, passengers, main="Destination Total Population and Passengers",
 attach(origin_pop)
 plot(distancemiles, passengers, main="Flight Distance and Passengers",
      xlab="Total Distance Miles ", ylab="Total Passengers ", pch=19, cex=0.3)
+
 
 # Extra Credit: add another variable --> Females 22-24 at Origin
 # Added command to census data retrieval above
@@ -137,8 +141,8 @@ summary(multiple_regression_m)
 # Create Extra Credit Multiple Regression Model
 # Delete duplicate columns
 origin_dest_dist_EC = origin_dest_dist
-#origin_dest_dist_EC = origin_dest_dist_EC[,-18]
 
+# Write the regression model
 multiple_regression_EC = lm(passengers~origin_total_pop+dest_total_pop+distancemiles+female_22_24E.x, origin_dest_dist_EC)
 
 # to see the results of our model, we can run summary()
