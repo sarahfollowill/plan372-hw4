@@ -87,7 +87,7 @@ plot(distancemiles, passengers, main="Flight Distance and Passengers",
      xlab="Total Distance Miles ", ylab="Total Passengers ", pch=19, cex=0.3)
 
 
-# Extra Credit: add another variable --> Females 22-24 at Origin
+# Extra Credit: add another variable --> Females 22-24 at Origin and Destination
 # Added command to census data retrieval above
 
 # Simple Scatterplot - Female 22-24 at Origin
@@ -95,6 +95,10 @@ attach(origin_pop)
 plot(female_22_24E, passengers, main="Females Age 22-24 at Origin and Passengers",
      xlab="Females Age 22-24 ", ylab="Total Passengers ", pch=19, cex=0.3)
 
+# Simple Scatterplot - Female 22-24 at Destination
+attach(dest_pop)
+plot(female_22_24E, passengers, main="Females Age 22-24 at Destination and Passengers",
+     xlab="Females Age 22-24 ", ylab="Total Passengers ", pch=19, cex=0.3)
 
 
 # Q3
